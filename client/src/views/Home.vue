@@ -11,7 +11,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import loginForm from "../components/loginForm.vue";
 
 export default {
@@ -21,8 +20,12 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .form {
   margin-top: 200px;
+}
+h1 {
+  font-family: "Lacquer", sans-serif;
 }
 </style>
