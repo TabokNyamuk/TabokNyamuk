@@ -25,4 +25,7 @@ export default {
 .form {
   margin-top: 200px;
 }
+h1 {
+  font-family: "Lacquer", sans-serif;
+}
 </style>
