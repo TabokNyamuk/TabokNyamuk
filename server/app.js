@@ -1,10 +1,14 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const port = 3000
-const router = require('./routes/index')
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const router = require('./routes/user');
+const http = require('http').createServer(app);
+const port = 3000;
 
-app.use(cors())
-app.use('/', router)
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.listen(port, () => console.log(`Listening on port ${port}!`))
+app.use('/user', router);
+
+http.listen(port, () => console.log(`Listening on port ${port}!`));

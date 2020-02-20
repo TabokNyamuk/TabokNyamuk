@@ -30,7 +30,9 @@ export default {
   /* padding: 50em; */
   background-position: center;
   color: #2c3e50;
-  }
+  height: 1000px;
+  width: 100%;
+}
 
 #nav {
   padding: 30px;
