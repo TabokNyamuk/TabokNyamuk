@@ -1,38 +1,90 @@
 <template>
-  <div class="container">
-    <p>Tepok {{ tepok }}</p>
-    <p>playerOne: {{ playerOne }} | Score: {{ ScoreOne }}</p>
-    <p>opponent: {{ opponent }} | Score: {{ ScoreTwo }}</p>
-    <img src="../assets/giphy.webp" @click="count" v-if="start" />
-    <div v-if="opponent">
-      {{ start }}
-      countdown {{ countdown }}
+  <div>
+    <div v-if="endgame">
+      <audio>
+        <source src="../assets/Tada.mp3">
+      </audio>
     </div>
-    <div v-if="start">Time {{ timer }}</div>
+    <!-- INI DARI NOTEPAD -->
+  <div v-if="opponent && !start">
+   <h1>
+   {{ countdown }}
+     </h1>
+  </div>
+  <div v-if="!opponent">
+    <h1>WAITING FOR OTHER PLAYER.....</h1>
+    </div>
+  <div v-if="playerOne && !start">
+  <waiting></waiting>
+  </div>
+  <div class="mainpage">
+  <div class="names" v-if="start">
+    <audio controls autoplay hidden>
+        <source src="../assets/shinchan.mp3" type="audio/mpeg">
+    </audio>
+  <!-- <h1>{{name}}</h1> -->
+  <div class="name">
+  <h1>You : {{ playerOne }} </h1>
+  <h1>Tabok : {{ ScoreOne }}</h1>
+  </div>
+  <div class='time' v-if="start">
+   <h1>
+     : Time : <br>
+      {{timer}}
+     </h1>
+     </div> 
+  <div class="name">
+  <h1>Opponent : {{ opponent }} </h1>
+  <h1>Tabok : {{ ScoreTwo }}</h1>
+  </div>
+  </div>
+  </div>
+  <div>
+    <img class='nyamuk' src="../assets/mosquito.png" v-if="start">
+    <div @click="gethit">
+      <div>
+      <audio controls autoplay hidden v-if="hit1">
+        <source src="../assets/hit.mp3" type="audio/mpeg">
+      </audio>
+      </div>
+      <div>
+      <audio controls autoplay hidden v-if="!hit2">
+      <source src="../assets/awch.mp3" type="audio/mpeg">
+      </audio>
+      </div>
+    <img class='pantat' src="../assets/giphy.webp" @click='count' v-if="start">
+    </div>
+  </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import waiting from '../components/waiting';
 
 export default {
   name: "gamepage",
+  components: {
+    waiting,
+  },
   data() {
     return {
       tepok: 0,
       start: false,
       countdown: 5,
-      timer: 10,
+      timer: 30,
       opponent: null,
       playerOne: null,
       ScoreOne: null,
       ScoreTwo: null,
-      winner: null
+      winner: null,
+      hit1:false,
+      hit2:true,
+      endgame: false,
     };
   },
   created() {
     this.playerOne = localStorage.name;
-    this.opponent = "Waiting for another player...";
+    this.opponent = null;
   },
   mounted() {
     this.$socket.on("playerTwo", data => {
@@ -88,6 +140,7 @@ export default {
           this.start = false;
           clearInterval(interval);
           this.getFinalScore();
+          this.endgame = true
           this.$router.push({ name: "result", query: { winner: this.winner } });
         }
       }, 1000);
@@ -98,6 +151,10 @@ export default {
       } else {
         this.winner = this.opponent;
       }
+    },
+    gethit() {
+      this.hit1 = !this.hit1;
+      this.hit2 = !this.hit2;   
     }
   }
 };
