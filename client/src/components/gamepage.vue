@@ -1,15 +1,14 @@
 <template>
   <div class="container">
     <p>Tepok {{ tepok }}</p>
-    <p>playerOne: {{ playerOne }} | Score: {{ScoreOne}}</p>
-    <p>opponent: {{ opponent }} | Score: {{ScoreTwo}}</p>
+    <p>playerOne: {{ playerOne }} | Score: {{ ScoreOne }}</p>
+    <p>opponent: {{ opponent }} | Score: {{ ScoreTwo }}</p>
     <img src="../assets/giphy.webp" @click="count" v-if="start" />
     <div v-if="opponent">
       <!-- <button @click="startCount">Start!</button> -->
       {{ start }}
       countdown {{ countdown }}
     </div>
-    <div v-if="winner">{{winner}}</div>
     <div v-if="start">Time {{ timer }}</div>
   </div>
 </template>
@@ -89,6 +88,7 @@ export default {
           this.start = false;
           clearInterval(interval);
           this.getFinalScore();
+          this.$router.push({ name: "result", query: { winner: this.winner } });
         }
       }, 1000);
     },
