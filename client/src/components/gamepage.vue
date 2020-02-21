@@ -29,7 +29,7 @@
   </div>
   <div class='time' v-if="start">
    <h1>
-     : Time : <br>
+      Time  <br>
       {{timer}}
      </h1>
      </div> 

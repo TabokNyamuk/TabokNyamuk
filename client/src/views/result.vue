@@ -1,6 +1,6 @@
 <template>
 <div>
-    <img src="../assets/200.webp" alt="">
+    <img id='result' src="../assets/200.webp" alt="">
   <div class="container">
     <div>
     <audio controls autoplay hidden v-if="link">
@@ -34,11 +34,11 @@ export default {
 </script>
 
 <style>
-img {
+#result {
   border-radius: 50%;
-  width: 300%
+  width: 45%
 }
 .container {
-  width: 300%;
+  width: 100%;
 }
 </style>

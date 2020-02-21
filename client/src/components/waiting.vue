@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/giphy.gif" alt="">
+    <img id="waiting" src="../assets/giphy.gif" alt="">
   </div>
 </template>
 
@@ -11,7 +11,8 @@ export default {
 </script>
 
 <style>
-img {
+#waiting {
   border-radius: 50%;
+  width: 40%;
 }
 </style>
