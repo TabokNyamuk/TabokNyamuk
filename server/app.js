@@ -1,18 +1,18 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
-const cors = require('cors');
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
+const cors = require("cors");
 
-const router = require('./routes/user');
+const router = require("./routes/user");
 const port = 3000;
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/user', router);
+app.use("/user", router);
 
 const scorePlayer = [
   {
@@ -28,38 +28,43 @@ const scorePlayer = [
 var players = [];
 let opponent = null;
 
-io.on('connection', function(socket) {
-  console.log('a user connected');
+io.on("connection", function(socket) {
+  console.log("a user connected");
 
-  socket.on('playerName', name => {
+  socket.on("playerName", name => {
     players.push(name);
-    console.log(name, '< ini name playerName');
+    console.log(name, "< ini name playerName");
     if (players.length == 1) {
-      console.log('masuk sini');
-      console.log(name, '< 1');
-      console.log(players, '< playernysa');
+      console.log("masuk sini");
+      console.log(name, "< 1");
+      console.log(players, "< playernysa");
       opponent = players[0];
       // io.emit('playerOne', players);
     } else if (players.length == 2) {
-      console.log('masuk dua');
-      console.log(name, '< 2');
+      console.log("masuk dua");
+      console.log(name, "< 2");
 
-      io.emit('playerTwo', players);
+      io.emit("playerTwo", players);
       // io.broadcast.emit('playerTwo',players[1])
     } else {
       return;
     }
   });
 
-  console.log(players, '< ini players');
+  console.log(players, "< ini players");
 
-  socket.on('score', score => {
-    console.log(score, '<');
-    io.emit('sendScore', score);
+  socket.on("score", score => {
+    console.log(score, "<");
+    io.emit("sendScore", score);
   });
-  socket.on('disconnect', function(tes) {
+
+  socket.on("quitGame", () => {
     players.pop();
-    console.log('user disconnected');
+  });
+
+  socket.on("disconnect", function(tes) {
+    players.pop();
+    console.log("user disconnected");
   });
 });
 

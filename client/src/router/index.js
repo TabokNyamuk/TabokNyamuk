@@ -16,14 +16,12 @@ const routes = [
   {
     path: "/Game",
     name: "GamePage",
-    component: Gamepage,
-    children: [
-      {
-        path: "/result",
-        name: "result",
-        component: result
-      }
-    ]
+    component: Gamepage
+  },
+  {
+    path: "/result",
+    name: "result",
+    component: result
   },
   {
     path: "/room",
