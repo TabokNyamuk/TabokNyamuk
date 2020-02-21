@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: "gamepage",
   data() {
@@ -51,7 +53,15 @@ export default {
       } else if (score.name == this.opponent) {
         this.ScoreTwo = score.tepok;
       }
-    });
+   });
+// =======
+//       countdown: 3,
+//       timer: 100,
+//       name: localStorage.name,
+//       hit1:false,
+//       hit2:true,
+//     }
+// >>>>>>> Gamepage
   },
   methods: {
     count() {
@@ -101,5 +111,33 @@ export default {
   position: absolute;
   width: 100px;
   height: 100px;
+}
+.names {
+  display: flex;
+  justify-content: space-evenly;
+}
+.name {
+  border: black 2px solid;
+  background: black;
+  color: white
+}
+
+.time{
+  border: black 2px solid;
+  background: black;
+  color: white
+}
+
+.nyamuk {
+  position: absolute;
+  width: 2%;
+  left: 53%;
+  bottom: 25%;
+}
+.pantat {
+  border-radius: 50%
+}
+#btn-start {
+  background: white
 }
 </style>
