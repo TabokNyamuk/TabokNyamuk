@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import axios from "axios";
-const server = "http://localhost:3000";
+import axios from 'axios';
+const server = 'http://localhost:3000';
 export default {
-  name: "loginForm",
+  name: 'loginForm',
   data() {
     return {
       form: { name: null, score: null }
@@ -34,16 +34,16 @@ export default {
   methods: {
     loginUser() {
       axios({
-        method: "post",
+        method: 'post',
         url: `${server}/user`,
         data: { name: this.form.name, score: this.form.score }
       })
         .then(data => {
-          console.log("MASUK");
-          console.log(data);
-          localStorage.setItem("nama", data.data.name);
-          localStorage.setItem("id", data.data.id);
-          this.$router.push({ name: "Room" });
+          console.log('MASUK');
+          console.log(data.data, '< ini name');
+          this.$socket.emit('playerName', data.data.name);
+          localStorage.setItem('name', data.data.name);
+          this.$router.push({ name: 'GamePage' });
         })
         .catch(err => {
           console.log(err);
@@ -59,7 +59,7 @@ export default {
   align-items: center;
 }
 .pulse {
-  font-family: "Lacquer", sans-serif;
+  font-family: 'Lacquer', sans-serif;
 }
 .pulse:hover {
   background-color: black;
@@ -79,6 +79,6 @@ export default {
   }
 }
 h1 {
-  font-family: "Lacquer", sans-serif;
+  font-family: 'Lacquer', sans-serif;
 }
 </style>

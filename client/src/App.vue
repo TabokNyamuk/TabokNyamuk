@@ -13,15 +13,14 @@
 // import gamepage from './components/gamepage';
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     // gamepage,
   }
-}
+};
 </script>
 
 <style>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
