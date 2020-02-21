@@ -5,7 +5,6 @@
     <p>opponent: {{ opponent }} | Score: {{ ScoreTwo }}</p>
     <img src="../assets/giphy.webp" @click="count" v-if="start" />
     <div v-if="opponent">
-      <!-- <button @click="startCount">Start!</button> -->
       {{ start }}
       countdown {{ countdown }}
     </div>
@@ -20,7 +19,7 @@ export default {
     return {
       tepok: 0,
       start: false,
-      countdown: 3,
+      countdown: 5,
       timer: 10,
       opponent: null,
       playerOne: null,
@@ -31,25 +30,17 @@ export default {
   },
   created() {
     this.playerOne = localStorage.name;
-    this.opponent = "Waitiing for another player";
+    this.opponent = "Waiting for another player...";
   },
   mounted() {
-    // this.$socket.on("playerOne", player => {
-    //   this.playerOne = player[0];
-    //   this.opponent = "Waiting for another player....";
-    //   console.log(this.playerOne, "< player One");
-    // });
     this.$socket.on("playerTwo", data => {
       console.log(data, "< player Two");
-      //coba
       for (let i = 0; i < data.length; i++) {
         if (data[i] != this.playerOne) {
           this.opponent = data[i];
           break;
         }
       }
-      // this.playerOne = data[0];
-      // this.opponent = data[1];
       this.startCount();
     });
     this.$socket.on("sendScore", score => {
@@ -62,7 +53,6 @@ export default {
       }
     });
   },
-  computed: {},
   methods: {
     count() {
       this.tepok++;
