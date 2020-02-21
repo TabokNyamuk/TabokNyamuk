@@ -41,6 +41,8 @@ export default {
         .then(data => {
           console.log("MASUK");
           console.log(data);
+          localStorage.setItem("nama", data.data.name);
+          localStorage.setItem("id", data.data.id);
           this.$router.push({ name: "Room" });
         })
         .catch(err => {
@@ -53,13 +55,14 @@ export default {
 
 <style scope>
 .container {
-  border: 1px solid blue;
+  border: 1px solid black;
   align-items: center;
 }
 .pulse {
   font-family: "Lacquer", sans-serif;
 }
 .pulse:hover {
+  background-color: black;
   animation: pulse 1s infinite;
   animation-timing-function: linear;
 }
