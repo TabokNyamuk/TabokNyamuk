@@ -27,7 +27,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   /* padding: 50em; */
-  background-image: url('./assets/doodle.jpg');
+  background: white;
+  background-image: url('./assets/background.gif');
   background-position: center;
   color: #2c3e50;
   height: 1000px;
