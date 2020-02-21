@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Gamepage from "../components/gamepage.vue"
+import Gamepage from "../views/gamepage.vue"
 import Room from "../views/Room.vue";
 
 Vue.use(VueRouter);
